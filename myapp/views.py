@@ -73,6 +73,6 @@ def ingresar_solicitud(request):
                 archivo.write(info_solicitud)
                 
             mensaje_final = {"mensaje_confirmacion" : "¡Su solicitud ha sido guardada exitosamente!"}
-            return render(request, 'solicitud.html', mensaje_final)
-    return render(request, 'solicitud.html')    
+            return render(request, 'formulario.html', mensaje_final)
+    return render(request, 'formulario.html')    
 

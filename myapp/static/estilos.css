@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #fbf5e9;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #3d3228;
+}
+
+.contenedor {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.formulario {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 440px;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+}
+
+.formulario h1 {
+    margin: 0 0 8px;
+    font-size: 26px;
+}
+
+.descripcion {
+    margin: 0 0 6px;
+    color: #6b5d50;
+}
+
+.nota {
+    margin: 0 0 20px;
+    font-size: 13px;
+    color: #8a7b6d;
+}
+
+.mensaje {
+    background-color: #e6f4e7;
+    color: #2e6b34;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.campo {
+    margin-bottom: 16px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d9cfc2;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.campo input:focus,
+.campo select:focus {
+    outline: none;
+    border-color: #c8643c;
+}
+
+.formulario button {
+    width: 100%;
+    padding: 12px;
+    background-color: #c8643c;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.formulario button:hover {
+    background-color: #b0532f;
+}
