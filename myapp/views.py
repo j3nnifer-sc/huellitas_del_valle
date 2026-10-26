@@ -51,7 +51,7 @@ def catalogo_mascotas(request):
             lista_filtrada.append(mascota)
             
     contexto = {'mascotas': lista_filtrada}
-    return render(request, 'myapp/catalogo.html', contexto)
+    return render(request, 'index.html', contexto)
                            
 def ingresar_solicitud(request):
     if request.method == 'POST':
@@ -67,12 +67,12 @@ def ingresar_solicitud(request):
             ruta_solicitudes = os.path.join( os.path.dirname(__file__), 'data', 'solicitudes.txt')
             
             #crea una variable la cual va a guardar en una sola linea la información del usuario, usando como separador el caracter |
-            info_solicitud = f"{nombre} | {telefono} | {correo} | {mascota}\n "
+            info_solicitud = f"{nombre} | {telefono} | {correo} | {mascota}\n"
             
             with open(ruta_solicitudes, 'a', encoding='utf-8') as archivo:
                 archivo.write(info_solicitud)
                 
             mensaje_final = {"mensaje_confirmacion" : "¡Su solicitud ha sido guardada exitosamente!"}
-            return render(request, 'myapp/solicitud.html', mensaje_final)
-    return render(request, 'myapp/solicitud.html')    
+            return render(request, 'solicitud.html', mensaje_final)
+    return render(request, 'solicitud.html')    
 
