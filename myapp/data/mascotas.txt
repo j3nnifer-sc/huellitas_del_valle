@@ -1,0 +1,6 @@
+#nombre | especie | peso | edad | descripción | foto 
+#Se usa el caracter | para separar los datos
+Valentino | Perro | 28 kg | 4 años | Juguetón, cariñoso y muy sociable. Le encanta pasear y recibir mimos.
+Luna | Gato | 7 kg | 10 años | Tranquila y curiosa, disfruta las tardes al sol y la compañía serena.
+Muñeco | Perro | 15 kg | 8 años | Noble, atento y lleno de energía. Busca una familia para compartir aventuras.
+Anastacia | Gato | 3.5 kg | 1 año | Dulce y afectuosa. Se adapta con facilidad y disfruta estar acompañada.
