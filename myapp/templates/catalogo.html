@@ -1,20 +1,81 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>CATÁLOGO</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        
-        
-        <script src="" async defer></script>
-    </body>
-</html>
+{% load static %}
+
+<section class="catalogo">
+
+    <div class="presentacion">
+        <div>
+            <p class="etiqueta">ADOPTA, NO COMPRES</p>
+            <h1>Conoce a nuestros perros y gatos que esperan una familia. Tu hogar puede ser su lugar favorito.</h1>
+        </div>
+        <img src="{% static 'portada.jpg' %}" alt="Un perro y un gato">
+    </div>
+
+    <p class="etiqueta">ENCUENTRA A TU COMPAÑERO</p>
+    <h2>Mascotas disponibles</h2>
+
+    <form method="GET" action="/" class="filtros">
+        <strong>Filtrar mascotas</strong>
+
+        <label>
+            Especie
+            <select name="especie">
+                <option value="">Todas las especies</option>
+                <option value="Perro" {% if request.GET.especie == "Perro" %}selected{% endif %}>Perro</option>
+                <option value="Gato" {% if request.GET.especie == "Gato" %}selected{% endif %}>Gato</option>
+            </select>
+        </label>
+
+        <label>
+            Edad
+            <select name="edad">
+                <option value="">Todas las edades</option>
+                {% for mascota in mascotas %}
+                <option value="{{ mascota.edad }}"
+                    {% if request.GET.edad == mascota.edad %}selected{% endif %}>
+                    {{ mascota.edad }}
+                </option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <button type="submit">Aplicar filtros</button>
+    </form>
+
+    <div class="mascotas">
+        {% for mascota in mascotas %}
+        <article class="tarjeta">
+
+            {% if mascota.nombre == "Valentino" %}
+                <img src="{% static 'valentino.jpg' %}" alt="Valentino">
+            {% elif mascota.nombre == "Luna" %}
+                <img src="{% static 'luna.jpg' %}" alt="Luna">
+            {% elif mascota.nombre == "Muñeco" %}
+                <img src="{% static 'muneco.jpg' %}" alt="Muñeco">
+            {% elif mascota.nombre == "Anastacia" %}
+                <img src="{% static 'anastacia.jpg' %}" alt="Anastacia">
+            {% endif %}
+
+            <div class="informacion">
+                <h3>{{ mascota.nombre }}</h3>
+
+                <div class="datos">
+                    <p><strong>Especie</strong><br>{{ mascota.especie }}</p>
+                    <p><strong>Peso</strong><br>{{ mascota.peso }}</p>
+                    <p><strong>Edad</strong><br>{{ mascota.edad }}</p>
+                </div>
+
+                <p class="descripcion">{{ mascota.descripcion }}</p>
+
+                <div class="acciones">
+                    <a href="{% url 'formulario_adopcion' %}" class="solicitar">Solicitar adopción</a>
+                    <a href="https://www.youtube.com/" target="_blank" class="ver-video">Ver video</a>
+                </div>
+            </div>
+
+        </article>
+        {% empty %}
+            <p>No se encontraron mascotas con esos filtros.</p>
+        {% endfor %}
+    </div>
+
+</section>
