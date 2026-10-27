@@ -1,75 +1,63 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitud de adopción | Huellitas del Valle</title>
-    <link rel="stylesheet" href="{% static 'estilos.css' %}">
-</head>
-<body>
 
-    <main class="contenedor">
-        <form class="formulario" method="POST">
-            {% csrf_token %}
+<main class="contenedor">
+    <form class="formulario" method="POST">
+        {% csrf_token %}
 
-            <h1>Solicitud de adopción</h1>
-            <p class="descripcion">
-                Completa tus datos para que podamos ponernos en contacto contigo.
-            </p>
-            <p class="nota">Todos los campos son obligatorios.</p>
+        <h1>Solicitud de adopción</h1>
+        <p class="descripcion">
+            Completa tus datos para que podamos ponernos en contacto contigo.
+        </p>
+        <p class="nota">Todos los campos son obligatorios.</p>
 
-            {% if mensaje_confirmacion %}
-                <p class="mensaje">{{ mensaje_confirmacion }}</p>
-            {% endif %}
+        {% if mensaje_confirmacion %}
+            <p class="mensaje">{{ mensaje_confirmacion }}</p>
+        {% endif %}
 
-            <div class="campo">
-                <label for="nombre">Nombre completo *</label>
-                <input
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    placeholder="Escribe tu nombre completo"
-                    required
+        <div class="campo">
+            <label for="nombre">Nombre completo *</label>
+            <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="Escribe tu nombre completo"
+                required
                 >
-            </div>
+        </div>
 
-            <div class="campo">
-                <label for="telefono">Teléfono de contacto *</label>
-                <input
-                    type="tel"
-                    id="telefono"
-                    name="telefono"
-                    placeholder="Ej. 310 000 0000"
-                    required
-                >
-            </div>
+        <div class="campo">
+            <label for="telefono">Teléfono de contacto *</label>
+            <input
+                type="tel"
+                id="telefono"
+                name="telefono"
+                placeholder="Ej. 310 000 0000"
+                required
+            >
+        </div>
 
-            <div class="campo">
-                <label for="correo">Correo electrónico *</label>
-                <input
-                    type="email"
-                    id="correo"
-                    name="correo"
-                    placeholder="correo@ejemplo.com"
-                    required
-                >
-            </div>
+        <div class="campo">
+            <label for="correo">Correo electrónico *</label>
+            <input
+                type="email"
+                id="correo"
+                name="correo"
+                placeholder="correo@ejemplo.com"
+                required
+            >
+        </div>
 
-            <div class="campo">
-                <label for="mascota">Mascota de interés *</label>
-                <select id="mascota" name="mascota" required>
-                    <option value="">Selecciona una mascota</option>
-                    <option value="Valentino">Valentino</option>
-                    <option value="Luna">Luna</option>
-                    <option value="Muñeco">Muñeco</option>
-                    <option value="Anastacia">Anastacia</option>
-                </select>
-            </div>
+        <div class="campo">
+            <label for="mascota">Mascota de interés *</label>
+            <select id="mascota" name="mascota" required>
+                <option value="">Selecciona una mascota</option>
+                <option value="Valentino">Valentino</option>
+                <option value="Luna">Luna</option>
+                <option value="Muñeco">Muñeco</option>
+                <option value="Anastacia">Anastacia</option>
+            </select>
+        </div>
 
-            <button type="submit">Enviar solicitud</button>
-        </form>
-    </main>
-
-</body>
-</html>
+        <button type="submit">Enviar solicitud</button>
+    </form>
+</main>

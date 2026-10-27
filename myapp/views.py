@@ -50,7 +50,8 @@ def catalogo_mascotas(request):
         if cumple_especie and cumple_edad:
             lista_filtrada.append(mascota)
             
-    contexto = {'mascotas': lista_filtrada}
+    contexto = {'mascotas': lista_filtrada,
+                'pagina': 'catalogo'}
     return render(request, 'index.html', contexto)
                            
 def ingresar_solicitud(request):
@@ -73,6 +74,6 @@ def ingresar_solicitud(request):
                 archivo.write(info_solicitud)
                 
             mensaje_final = {"mensaje_confirmacion" : "¡Su solicitud ha sido guardada exitosamente!"}
-            return render(request, 'formulario.html', mensaje_final)
-    return render(request, 'formulario.html')    
+            return render(request, 'index.html', mensaje_final)
+    return render(request, 'index.html', {'pagina': 'formulario'})    
 

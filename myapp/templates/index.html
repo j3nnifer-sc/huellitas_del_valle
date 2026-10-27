@@ -24,7 +24,11 @@
     </header>
 
     <main>
-        {% include 'catalogo.html' %}
+        {% if pagina == 'formulario' %}
+            {% include 'formulario.html' %}
+        {% else %}
+            {% include 'catalogo.html' %}
+        {% endif %}
     </main>
 
     <footer>
