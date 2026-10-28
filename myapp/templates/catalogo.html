@@ -7,7 +7,7 @@
             <p class="etiqueta">ADOPTA, NO COMPRES</p>
             <h1>Conoce a nuestros perros y gatos que esperan una familia. Tu hogar puede ser su lugar favorito.</h1>
         </div>
-        <img src="{% static 'portada.jpg' %}" alt="Un perro y un gato">
+        <img src="{% static 'img/portada.png' %}" alt="Un perro y un gato">
     </div>
 
     <p class="etiqueta">ENCUENTRA A TU COMPAÑERO</p>
@@ -46,13 +46,13 @@
         <article class="tarjeta">
 
             {% if mascota.nombre == "Valentino" %}
-                <img src="{% static 'valentino.jpg' %}" alt="Valentino">
+                <img src="{% static 'img/valentino.png' %}" alt="Valentino">
             {% elif mascota.nombre == "Luna" %}
-                <img src="{% static 'luna.jpg' %}" alt="Luna">
+                <img src="{% static 'img/luna.png' %}" alt="Luna">
             {% elif mascota.nombre == "Muñeco" %}
-                <img src="{% static 'muneco.jpg' %}" alt="Muñeco">
+                <img src="{% static 'img/muñeco.png' %}" alt="Muñeco">
             {% elif mascota.nombre == "Anastacia" %}
-                <img src="{% static 'anastacia.jpg' %}" alt="Anastacia">
+                <img src="{% static 'img/anastacia.png' %}" alt="Anastacia">
             {% endif %}
 
             <div class="informacion">
