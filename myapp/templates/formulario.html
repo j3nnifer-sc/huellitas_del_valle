@@ -9,9 +9,18 @@
             Completa tus datos para que podamos ponernos en contacto contigo.
         </p>
         <p class="nota">Todos los campos son obligatorios.</p>
-
+        
         {% if mensaje_confirmacion %}
             <p class="mensaje">{{ mensaje_confirmacion }}</p>
+        {% endif %}
+
+        {% if redireccionar %}
+            <script>
+            // Espera 3 segundos (3000 milisegundos) viendo el mensaje y luego redirige al catálogo
+                setTimeout(function() {
+                    window.location.href = "{% url 'catalogo' %}";
+                }, 3000);
+            </script>
         {% endif %}
 
         <div class="campo">
@@ -21,6 +30,9 @@
                 id="nombre"
                 name="nombre"
                 placeholder="Escribe tu nombre completo"
+                value="{{ nombre|default:'' }}"
+                pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ]+"
+                title="El nombre no puede tener números."
                 required
                 >
         </div>
@@ -32,6 +44,9 @@
                 id="telefono"
                 name="telefono"
                 placeholder="Ej. 310 000 0000"
+                value="{{ telefono|default:'' }}"
+                pattern="[0-9]+"
+                title="El Teléfono no puede tener letras"
                 required
             >
         </div>

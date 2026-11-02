@@ -23,6 +23,17 @@
         </div>
     </header>
 
+    <!-- Esto ponlo en la parte superior de tu catálogo o página de inicio -->
+    {% if messages %}
+        <div class="contenedor-mensajes" style="margin: 20px auto; max-width: 600px;">
+            {% for message in messages %}
+                <p class="mensaje" style="color: green; font-weight: bold; background-color: #e6f4ea; padding: 12px; border-radius: 5px; border: 1px solid #c3e6cb; text-align: center;">
+                    {{ message }}
+                </p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <main>
         {% if pagina == 'formulario' %}
             {% include 'formulario.html' %}

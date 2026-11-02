@@ -1,5 +1,6 @@
 import os
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 
 def catalogo_mascotas(request):
     ruta_archivo = os.path.join(os.path.dirname(__file__), 'data', 'mascotas.txt')
@@ -49,9 +50,14 @@ def catalogo_mascotas(request):
         # Si cumple con ambos criterios, se añade a la lista que se va a mostrar
         if cumple_especie and cumple_edad:
             lista_filtrada.append(mascota)
-            
-    contexto = {'mascotas': lista_filtrada,
-                'pagina': 'catalogo'}
+
+    edades_unicas = sorted(list(set(m['edad'].strip().lower() for m in lista_mascotas)))
+
+    contexto = {
+        'mascotas': lista_filtrada,
+        'edades_unicas' : edades_unicas,
+        'pagina': 'catalogo',
+        }
     return render(request, 'index.html', contexto)
                            
 def ingresar_solicitud(request):
@@ -61,19 +67,45 @@ def ingresar_solicitud(request):
         telefono = request.POST.get('telefono', '').strip()
         correo = request.POST.get('correo', '').strip()
         mascota = request.POST.get('mascota', '').strip()
-            
+        
         # Verifica si los campos del formulario están llenos
         if nombre and telefono and correo and mascota:
+    
+            error_nombre = None
+            error_telefono = None
+
+            if any(c.isdigit() for c in nombre):
+                error_nombre = 'El nombre no puede tener numeros.'
+
+            if any(c.isalpha() for c in telefono):
+                error_telefono = 'El teléfono no puede tener letras.'
+
+            if error_nombre or error_telefono:
+                contexto = {
+                    'error_nombre' : error_nombre,
+                    'error_telefono' : error_telefono,
+                    'pagina' : 'formulario',
+                    'nombre' : nombre,
+                    'telefono' : telefono,
+                    'correo' : correo,
+                    'mascota' : mascota
+                }
+                return render(request, 'index.html', contexto)
+
             # Se define la ruta hacia el txt
             ruta_solicitudes = os.path.join( os.path.dirname(__file__), 'data', 'solicitudes.txt')
-            
+
             #crea una variable la cual va a guardar en una sola linea la información del usuario, usando como separador el caracter |
             info_solicitud = f"{nombre} | {telefono} | {correo} | {mascota}\n"
             
             with open(ruta_solicitudes, 'a', encoding='utf-8') as archivo:
                 archivo.write(info_solicitud)
                 
-            mensaje_final = {"mensaje_confirmacion" : "¡Su solicitud ha sido guardada exitosamente!"}
-            return render(request, 'index.html', mensaje_final)
-    return render(request, 'index.html', {'pagina': 'formulario'})    
-
+            contexto = {
+                "mensaje_confirmacion": "¡Su solicitud ha sido guardada exitosamente!",
+                "pagina" : "formulario",
+                "redireccionar" : True
+            }
+            return render(request, 'index.html', contexto)
+        return render(request, 'index.html', {'pagina' : 'formulario'})
+    return render(request, 'index.html', {'pagina' : 'formulario'})

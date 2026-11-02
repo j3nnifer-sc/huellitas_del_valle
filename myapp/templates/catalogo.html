@@ -29,10 +29,10 @@
             Edad
             <select name="edad">
                 <option value="">Todas las edades</option>
-                {% for mascota in mascotas %}
-                <option value="{{ mascota.edad }}"
-                    {% if request.GET.edad == mascota.edad %}selected{% endif %}>
-                    {{ mascota.edad }}
+                {% for edad in edades_unicas %}
+                <option value="{{ edad }}"
+                    {% if request.GET.edad == edad %}selected{% endif %}>
+                    {{ edad }}
                 </option>
                 {% endfor %}
             </select>
