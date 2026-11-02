@@ -16,7 +16,7 @@
 
         {% if redireccionar %}
             <script>
-            // Espera 3 segundos (3000 milisegundos) viendo el mensaje y luego redirige al catálogo
+            // Espera 3 segundos y luego redirige al catálogo
                 setTimeout(function() {
                     window.location.href = "{% url 'catalogo' %}";
                 }, 3000);
@@ -31,7 +31,7 @@
                 name="nombre"
                 placeholder="Escribe tu nombre completo"
                 value="{{ nombre|default:'' }}"
-                pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ]+"
+                pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+"
                 title="El nombre no puede tener números."
                 required
                 >
