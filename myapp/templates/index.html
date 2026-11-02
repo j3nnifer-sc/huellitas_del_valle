@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellitas del Valle</title>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <div>
+            <a href="/">Huellitas del Valle</a>
+
+            <nav>
+                <a href="/">Inicio</a>
+                <a href="{% url 'formulario_adopcion' %}">Solicitar adopción</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Esto ponlo en la parte superior de tu catálogo o página de inicio -->
+    {% if messages %}
+        <div class="contenedor-mensajes" style="margin: 20px auto; max-width: 600px;">
+            {% for message in messages %}
+                <p class="mensaje" style="color: green; font-weight: bold; background-color: #e6f4ea; padding: 12px; border-radius: 5px; border: 1px solid #c3e6cb; text-align: center;">
+                    {{ message }}
+                </p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <main>
+        {% if pagina == 'formulario' %}
+            {% include 'formulario.html' %}
+        {% else %}
+            {% include 'catalogo.html' %}
+        {% endif %}
+    </main>
+
+    <footer>
+        <div>
+            <h2>Huellitas del Valle</h2>
+            <p>Cuidamos, protegemos y encontramos hogares.</p>
+            <p>Fundación de protección animal.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
