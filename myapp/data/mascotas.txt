@@ -1,6 +1,9 @@
-#nombre | especie | peso | edad | descripción | foto 
+#nombre | especie | peso | edad | descripción
 #Se usa el caracter | para separar los datos
-Valentino | Perro | 28 kg | 4 años | Juguetón, cariñoso y muy sociable. Le encanta pasear y recibir mimos.
-Luna | Gato | 7 kg | 10 años | Tranquila y curiosa, disfruta las tardes al sol y la compañía serena.
-Muñeco | Perro | 15 kg | 8 años | Noble, atento y lleno de energía. Busca una familia para compartir aventuras.
-Anastacia | Gato | 3.5 kg | 1 año | Dulce y afectuosa. Se adapta con facilidad y disfruta estar acompañada.
+Canela | Perro | 9 kg | 3 años | Le gusta la compañía y pasar las tardes al sol. Busca una familia que juegue a traer la pelota con ella.
+Apolo | Gato | 7 kg | 3 años | Dulce y curioso. Busca una familia con la cual dormir acompañado y jugar.
+Cleo |  Gato | 7 kg | 8 años | Tímida y tranquila. Desea encontrar un hogar el cual aprecien el silencio y la buena compañia.
+Chocolatina | Perro | 30 kg | 4 años | Inteligente, imperativa y juiciosa. Espera una familia con la cual salir a pasear.
+Morocho | Gato | 4 kg | 1 año |Juguetón e inquieto. Busca una familia que quiera jugar con él y pasar el tiempo.
+Greis | Gato | 6 kg | 10 años |  Mimada y cariñosa. Está esperando con ansias su nueva familia a la cual darle amor.
+Leo | Gato | 3 kg | 2 años | Juguetón y cariñoso. Busca un hogar con el cual compartir aventurar y mimos.

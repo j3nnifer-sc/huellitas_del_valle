@@ -1,13 +1,9 @@
-{% load static %}
-
 <main class="contenedor">
     <form class="formulario" method="POST">
         {% csrf_token %}
 
         <h1>Solicitud de adopción</h1>
-        <p class="descripcion">
-            Completa tus datos para que podamos ponernos en contacto contigo.
-        </p>
+        <p class="descripcion">Completa tus datos para que podamos ponernos en contacto contigo.</p>
         <p class="nota">Todos los campos son obligatorios.</p>
         
         {% if mensaje_confirmacion %}
@@ -16,60 +12,35 @@
 
         {% if redireccionar %}
             <script>
-            // Espera 3 segundos y luego redirige al catálogo
                 setTimeout(function() {
                     window.location.href = "{% url 'catalogo' %}";
                 }, 3000);
             </script>
         {% endif %}
 
-        <div class="campo">
-            <label for="nombre">Nombre completo *</label>
-            <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                placeholder="Escribe tu nombre completo"
-                value="{{ nombre|default:'' }}"
-                pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+"
-                title="El nombre no puede tener números."
-                required
+        {% for campo in campos_formulario %}
+            <div class="campo">
+                <label for="{{ campo.id }}">{{ campo.label }}</label>
+                <input
+                    type="{{ campo.type }}"
+                    id="{{ campo.id }}"
+                    name="{{ campo.id }}"
+                    placeholder="{{ campo.placeholder }}"
+                    value="{{ campo.value|default:'' }}"
+                    {% if campo.pattern %}pattern="{{ campo.pattern }}"{% endif %}
+                    {% if campo.title %}title="{{ campo.title }}"{% endif %}
+                    required
                 >
-        </div>
-
-        <div class="campo">
-            <label for="telefono">Teléfono de contacto *</label>
-            <input
-                type="tel"
-                id="telefono"
-                name="telefono"
-                placeholder="Ej. 310 000 0000"
-                value="{{ telefono|default:'' }}"
-                pattern="[0-9]+"
-                title="El Teléfono no puede tener letras"
-                required
-            >
-        </div>
-
-        <div class="campo">
-            <label for="correo">Correo electrónico *</label>
-            <input
-                type="email"
-                id="correo"
-                name="correo"
-                placeholder="correo@ejemplo.com"
-                required
-            >
-        </div>
+            </div>
+        {% endfor %}
 
         <div class="campo">
             <label for="mascota">Mascota de interés *</label>
             <select id="mascota" name="mascota" required>
                 <option value="">Selecciona una mascota</option>
-                <option value="Valentino">Valentino</option>
-                <option value="Luna">Luna</option>
-                <option value="Muñeco">Muñeco</option>
-                <option value="Anastacia">Anastacia</option>
+                {% for mascota in nombres_mascotas %}
+                    <option value="{{ mascota }}" {% if mascota_seleccionada == mascota %}selected{% endif %}>{{ mascota }}</option>
+                {% endfor %}
             </select>
         </div>
 

@@ -45,15 +45,9 @@
         {% for mascota in mascotas %}
         <article class="tarjeta">
 
-            {% if mascota.nombre == "Valentino" %}
-                <img src="{% static 'img/valentino.png' %}" alt="Valentino">
-            {% elif mascota.nombre == "Luna" %}
-                <img src="{% static 'img/luna.png' %}" alt="Luna">
-            {% elif mascota.nombre == "Muñeco" %}
-                <img src="{% static 'img/muñeco.png' %}" alt="Muñeco">
-            {% elif mascota.nombre == "Anastacia" %}
-                <img src="{% static 'img/anastacia.png' %}" alt="Anastacia">
-            {% endif %}
+            {% with nombre_modificado=mascota.nombre|lower %}
+                <img src="{% static 'img/' %}{{ nombre_modificado }}.png" alt="{{ mascota.nombre }}">
+            {% endwith %}
 
             <div class="informacion">
                 <h3>{{ mascota.nombre }}</h3>
@@ -68,7 +62,7 @@
 
                 <div class="acciones">
                     <a href="{% url 'formulario_adopcion' %}" class="solicitar">Solicitar adopción</a>
-                    <a href="https://www.youtube.com/" target="_blank" class="ver-video">Ver video</a>
+                    <a href="https://www.youtube.com/@Huellitas_del_Valle/videos" target="_blank" class="ver-video">Ver video</a>
                 </div>
             </div>
 
