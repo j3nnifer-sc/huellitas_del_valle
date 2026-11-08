@@ -1,6 +1,6 @@
 import os
 from django.shortcuts import render, redirect
-from django.contrib import messages
+
 
 def catalogo_mascotas(request):
     ruta_archivo = os.path.join(os.path.dirname(__file__), 'data', 'mascotas.txt')
@@ -59,15 +59,33 @@ def catalogo_mascotas(request):
         'pagina': 'catalogo',
         }
     return render(request, 'index.html', contexto)
-                           
+                            
 def ingresar_solicitud(request):
+    ruta_archivo = os.path.join(os.path.dirname(__file__), 'data', 'mascotas.txt')
+    lista_mascotas = []
+    
+    if os.path.exists(ruta_archivo):
+        with open(ruta_archivo, 'r', encoding='utf-8') as archivo:
+            for info_mascota in archivo:
+                info_mascota = info_mascota.strip()
+                if not info_mascota or info_mascota.startswith('#'):
+                    continue
+                partes = info_mascota.split('|')
+                if len(partes) >= 5:
+                    lista_mascotas.append({
+                        'nombre': partes[0].strip(),
+                        'especie': partes[1].strip(),
+                        'peso': partes[2].strip(),
+                        'edad': partes[3].strip(),
+                        'descripcion': partes[4].strip(),
+                    })
+
     if request.method == 'POST':
         # Toma los datos ingresados por el usuario en el formulario
         nombre = request.POST.get('nombre', '').strip()
         telefono = request.POST.get('telefono', '').strip()
         correo = request.POST.get('correo', '').strip()
         mascota = request.POST.get('mascota', '').strip()
-        
         # Verifica si los campos del formulario están llenos
         if nombre and telefono and correo and mascota:
     
@@ -88,7 +106,8 @@ def ingresar_solicitud(request):
                     'nombre' : nombre,
                     'telefono' : telefono,
                     'correo' : correo,
-                    'mascota' : mascota
+                    'mascota' : mascota,
+                    'mascotas' : lista_mascotas  # <--- Corregido (en plural)
                 }
                 return render(request, 'index.html', contexto)
 
@@ -104,8 +123,13 @@ def ingresar_solicitud(request):
             contexto = {
                 "mensaje_confirmacion": "¡Su solicitud ha sido guardada exitosamente!",
                 "pagina" : "formulario",
-                "redireccionar" : True
+                "redireccionar" : True,
+                "mascotas" : lista_mascotas
             }
             return render(request, 'index.html', contexto)
-        return render(request, 'index.html', {'pagina' : 'formulario'})
-    return render(request, 'index.html', {'pagina' : 'formulario'})
+            
+        # Corregido: se añade 'mascotas': lista_mascotas
+        return render(request, 'index.html', {'pagina' : 'formulario', 'mascotas': lista_mascotas})
+        
+    # Corregido: se añade 'mascotas': lista_mascotas
+    return render(request, 'index.html', {'pagina' : 'formulario', 'mascotas': lista_mascotas})

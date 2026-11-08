@@ -66,10 +66,11 @@
             <label for="mascota">Mascota de interés *</label>
             <select id="mascota" name="mascota" required>
                 <option value="">Selecciona una mascota</option>
-                <option value="Valentino">Valentino</option>
-                <option value="Luna">Luna</option>
-                <option value="Muñeco">Muñeco</option>
-                <option value="Anastacia">Anastacia</option>
+                {% for m in mascotas %}
+                    <option value="{{ m.nombre }}" {% if mascota == m.nombre %}selected{% endif %}>
+                        {{ m.nombre }} ({{ m.especie }})
+                    </option>
+                {% endfor %}
             </select>
         </div>
 
